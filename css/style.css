@@ -1,0 +1,81 @@
+.bg-style{
+    background: #F6C7A5;
+    height: 234px;
+}
+
+body{
+    background-color: #F7F8F8; 
+}
+.content {
+    min-height: calc(calc(100vh - 173.59px));
+}
+@media (max-width:992px) {
+    .content {
+        min-height: calc(calc(100vh - 269.59px));
+    }
+}
+
+.stop-btn{
+    display: none;
+}
+
+.stop-btn.active{
+    display: inline-block;
+}
+
+.change-btn.remove{
+    display: none;
+}
+
+.send-btn{
+    display: none;
+}
+
+.send-btn.active{
+    display: inline-block;
+}
+
+.success{
+    display: none;
+}
+.success.active{
+    display: block;
+}
+.loader{
+    display: none;
+}
+.loader.active{
+    display: block;
+}
+
+
+.signup_success{
+    display: none;
+}
+
+.signup_warning{
+    display: none;
+}
+
+.error_pass{
+    border-color: red;
+}
+
+.login_success{
+    display: none;
+}
+.login_warning{
+    display: none;
+}
+.password_warning{
+    display: none;
+}
+.success_pass_change{
+    display: none;
+}
+.warning_pass_change{
+    display: none;
+}
+.warning_last_pass_change{
+    display: none;
+}
