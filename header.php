@@ -17,9 +17,9 @@
             <a class="nav-link" href="#">Вакансии</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="for_copmany.php">Для работодателей</a>
+            <a class="nav-link" href="employer.php">Для работодателей</a>
           </li>
-          <?php if (isset($_SESSION['user'])) {
+          <?php if (isset($_SESSION['user']) && $_SESSION['user_group'] == "student") {
             echo
             '<li class="nav-item d-block d-md-block d-lg-none">
                 <a class="nav-link session_name session_name" href="profile.php">'.$_SESSION['user'].'</a>
@@ -30,15 +30,38 @@
               <li class="nav-item d-block d-md-block d-lg-none">
                 <a class="text-danger nav-link" href="logout.php">Выйти</a>
               </li>';
-          } ?>
+          } elseif (isset($_SESSION['user']) && $_SESSION['user_group'] == "employer") {
+            echo
+            '<li class="nav-item d-block d-md-block d-lg-none">
+                <a class="nav-link session_name session_name" href="employer_profile.php">'.$_SESSION['user'].'</a>
+              </li>
+              <li class="nav-item d-block d-md-block d-lg-none">
+                <a class="nav-link" href="#">Настройки</a>
+              </li>
+              <li class="nav-item d-block d-md-block d-lg-none">
+                <a class="text-danger nav-link" href="logout.php">Выйти</a>
+              </li>';
+          }?>
         </ul>
-        <?php if (isset($_SESSION['user'])) {
+        <?php if (isset($_SESSION['user']) && $_SESSION['user_group'] == "student") {
           echo '
             <ul class="d-none d-lg-block d-xl-block nav nav-pills">
             <li class="nav-item nav-item dropdown">
             <a class="nav-link dropdown-toggle session_name" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">'.$_SESSION['user'].'</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="profile.php">Профиль</a></li>
+                  <li><a class="dropdown-item" href="#">Настройки</a></li>
+                  <li><a class="text-danger dropdown-item" href="logout.php">Выйти</a></li>
+              </ul>
+            </li>
+            </ul>';
+        } elseif (isset($_SESSION['user']) && $_SESSION['user_group'] == "employer") {
+          echo '
+            <ul class="d-none d-lg-block d-xl-block nav nav-pills">
+            <li class="nav-item nav-item dropdown">
+            <a class="nav-link dropdown-toggle session_name" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">'.$_SESSION['user'].'</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="employer_profile.php">Профиль компании</a></li>
                   <li><a class="dropdown-item" href="#">Настройки</a></li>
                   <li><a class="text-danger dropdown-item" href="logout.php">Выйти</a></li>
               </ul>

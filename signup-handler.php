@@ -6,7 +6,6 @@ $name = $_POST['name'];
 $surname = $_POST['surname'];
 $email = $_POST['email'];
 $password = $_POST['password'];
-$user_group = 'student';
 
 $hash = password_hash($password, PASSWORD_BCRYPT);
 
@@ -17,7 +16,7 @@ if ($result->num_rows > 0) {
 } else {
 
     if (isset($email) && isset($password)) {
-        $signup_query = "INSERT INTO users (name, surname, email, password, signup_time, user_group) VALUES ('$name','$surname','$email', '$hash', NOW(), '$user_group')";
+        $signup_query = "INSERT INTO users (name, surname, email, password, signup_time) VALUES ('$name','$surname','$email', '$hash', NOW(), '$user_group')";
         mysqli_query($conn, $signup_query);
     }
     session_start();

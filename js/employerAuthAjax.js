@@ -3,7 +3,7 @@ $(document).ready(function () {
         var emailValue = $('#loginEmail').val();
         var passwordValue = $('#loginPassword').val();
         $.ajax({
-            url: "auth.php",
+            url: "auth-employer.php",
             type: "POST",
             data: {
                 email: emailValue,

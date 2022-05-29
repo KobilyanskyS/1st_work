@@ -25,7 +25,7 @@ $total_pages = ceil($total_rows / $limit);
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="bg">
+<body>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
       <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
@@ -45,7 +45,7 @@ $total_pages = ceil($total_rows / $limit);
       <button class="btn btn-outline-primary" type="button" id="button-addon2">Поиск</button>
     </div>
     <div class="row">
-      <div class="<?php if (isset($_SESSION['user'])) {
+      <div class="<?php if (isset($_SESSION['user']) && $_SESSION['user_group'] == "student") {
                     echo 'col-sm-12 col-md-7 col-lg-7 col-xl-7 mb-2';
                   } else {
                     echo 'col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-2';
@@ -55,7 +55,7 @@ $total_pages = ceil($total_rows / $limit);
           <p>Ваш первый опыт работы!</p>
         </div>
       </div>
-      <?php if (isset($_SESSION['user'])) {
+      <?php if (isset($_SESSION['user']) && $_SESSION['user_group'] == "student") {
         echo
         '<div class="col-sm-12  col-md-5 col-lg-5 col-xl-5">
         <div class="p-4 text-white bg-light rounded-3 border">
@@ -150,7 +150,7 @@ $total_pages = ceil($total_rows / $limit);
     <div class="container" id="target-content">
       <div class="d-flex justify-content-center">
         <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
-          <span class="visually-hidden">Loading...</span>
+          <span class="visually-hidden">Загрузка...</span>
         </div>
       </div>
     </div>
