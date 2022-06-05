@@ -7,7 +7,7 @@ if (isset($_GET["page"])) {
     $page_number = 1;
 };
 $initial_page = ($page_number - 1) * $limit;
-$sql = "SELECT * FROM vacancies LIMIT $initial_page, $limit";
+$sql = "SELECT * FROM vacancies ORDER BY id DESC LIMIT $initial_page, $limit";
 $result = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_array($result)) {
 ?>

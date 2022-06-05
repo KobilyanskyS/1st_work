@@ -32,7 +32,37 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h2>Создать вакансию</h2>
-                        <div class="signup_success">
+                        <div class="mt-4 form">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Должность</label>
+                                <input type="text" class="form-control" id="name" onchange="classList.remove('is-invalid')" name="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Сфера</label>
+                                <select class="form-select form-select-sm" id = "sphere" name="sphere">
+                                    <option value="Системное администрирование">Системное администрирование</option>
+                                    <option value="Разработка сайтов">Разработка сайтов</option>
+                                    <option value="Сетевое администрирование">Сетевое администрирование</option>
+                                    <option value="Разработка iOS приложений">Разработка iOS приложений</option>
+                                    <option value="Разработка Android приложений">Разработка Android приложений</option>
+                                    <option value="Другое" selected>Другое</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="salary" class="form-label">Зарплата</label>
+                                <input type="text" class="form-control" id="salary" onchange="classList.remove('is-invalid')" name="salary">
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Краткое описание</label>
+                                <textarea class="form-control" id="description" onchange="classList.remove('is-invalid')" name="description"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="full_description" class="form-label">Полное описание</label>
+                                <textarea class="form-control" id="full_description" onchange="classList.remove('is-invalid')" name="full_description"></textarea>
+                            </div>
+                            <button type="submit" id="submitBtn" class="btn btn-primary">Разместить вакансию</button>
+                        </div>
+                        <div class="vacancy_success">
                             <div class="mt-3 alert alert-success d-flex align-items-center" role="alert">
                                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
                                     <use xlink:href="#check-circle-fill" />
@@ -42,42 +72,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="signup_warning">
-                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <div class="vacancy_warning">
+                            <div class="mt-3 alert alert-danger d-flex align-items-center" role="alert">
                                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
                                     <use xlink:href="#exclamation-triangle-fill" />
                                 </svg>
                                 <div>
-                                    Email уже зарегистрирован!
+                                    Все поля должны быть заполнены
                                 </div>
                             </div>
                         </div>
-                        <div class="password_warning">
-                            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                        <div class="vacancy_unknown_warning">
+                            <div class="mt-3 alert alert-danger d-flex align-items-center" role="alert">
                                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
                                     <use xlink:href="#exclamation-triangle-fill" />
                                 </svg>
                                 <div>
-                                    Пароли не совпадают!
+                                    Непредвиденная ошибка
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-4 form">
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Должность</label>
-                                <input type="text" class="form-control" id="name" onchange="classList.remove('is-invalid')" name="name" aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Зарплата</label>
-                                <input type="text" class="form-control" id="salary" onchange="classList.remove('is-invalid')" name="surname" aria-describedby="emailHelp">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Описание</label>
-                                <textarea class="form-control" id="description" onchange="classList.remove('is-invalid')" name="email" aria-describedby="emailHelp"></textarea>
-                            </div>
-                            <button type="submit" id="submitBtn" class="btn btn-primary">Разместить вакансию</button>
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -106,9 +120,11 @@
                 }
             }
         </script>
-        <script src="js/signupAjax.js"></script>
-        <script src="js/signup.js"></script>
+        <script src="js/createVacancyAjax.js"></script>
+        <script src="js/createVacancy.js"></script>
     </body>
 
     </html>
-<?php } else { header("location: index.php"); } ?>
+<?php } else {
+    header("location: index.php");
+} ?>

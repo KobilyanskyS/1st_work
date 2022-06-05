@@ -79,3 +79,21 @@ body{
 .warning_last_pass_change{
     display: none;
 }
+.login_success{
+    display: none;
+}
+.login_warning{
+    display: none;
+}
+.password_warning{
+    display: none;
+}
+.vacancy_success{
+    display: none;
+}
+.vacancy_warning{
+    display: none;
+}
+.vacancy_unknown_warning{
+    display: none;
+}

@@ -48,7 +48,7 @@
                             <a class="nav-link" href="#">Вакансии</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Для работодателей</a>
+                            <a class="nav-link" href="employer.php">Для работодателей</a>
                         </li>
                     </ul>
                     <div>

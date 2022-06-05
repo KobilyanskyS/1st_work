@@ -12,7 +12,6 @@ if (isset($_SESSION['email'])) {
     $surname = $user_array['contact_surname'];
     $email = $user_array['email'];
     $phone = $user_array['phone'];
-
 ?>
     <!DOCTYPE html>
     <html>
@@ -29,7 +28,7 @@ if (isset($_SESSION['email'])) {
     </head>
 
     <body>
-    <?php include 'employer_header.php'; ?>
+        <?php include 'employer_header.php'; ?>
 
         <section class="content">
             <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -82,6 +81,46 @@ if (isset($_SESSION['email'])) {
                         <div class="mt-2"><a href="change-password.php">Изменить пароль</a></div>
                     </div>
                 </div>
+            </div>
+            <div class="container mt-3">
+                <h2>Ваши вакансии</h2>
+            </div>
+            <div class="container" id="target-content">
+                <?php
+                $_monthsList = array(
+                    1 => "января",
+                    2 => "февраля",
+                    3 => "марта",
+                    4 => "апреля",
+                    5 => "мая",
+                    6 => "июня",
+                    7 => "июля",
+                    8 => "августа",
+                    9 => "сентября",
+                    10 => "октября",
+                    11 => "ноября",
+                    12 => "декабря"
+                  );
+                $employer = $_SESSION['user'];
+                $select_vacancies = "SELECT name, category, salary, description, employer, MONTH(create_time) as month, DAYOFMONTH(create_time) as day, TIME_FORMAT(create_time, '%k:%i') as time FROM vacancies WHERE employer = '$employer' ORDER BY create_time DESC";
+                $vacancies_query = mysqli_query($conn, $select_vacancies);
+                while ($vacancies_array = mysqli_fetch_array($vacancies_query)) {
+                ?>
+                    <div class="card w-100 mb-2">
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $vacancies_array["name"]; ?></h5>
+                            <p class="card-text text-primary"><?php echo $vacancies_array["salary"]; ?></p>
+                            <p class="card-text"><?php echo $vacancies_array["description"]; ?></p>
+                            <p class="card-text text-muted"><?php echo $vacancies_array["employer"]; ?></p>
+                            <p class="card-text">Размещено <span class="text-muted"><?php echo $vacancies_array["day"].' '.$_monthsList[$vacancies_array["month"]]." в ".$vacancies_array["time"]; ?></span></p>
+                            <p class="card-text">Сфера деятельности: <span class="text-muted"><?php echo $vacancies_array["category"]; ?></span></p>
+                            <a href="#" class="btn btn-success">Изменить вакансию</a>
+                            <a href="#" class="btn btn-danger">Удалить вакансию</a>
+                        </div>
+                    </div>
+                <?php
+                };
+                ?>
             </div>
         </section>
 

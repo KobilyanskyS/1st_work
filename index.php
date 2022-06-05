@@ -88,13 +88,76 @@ $total_pages = ceil($total_rows / $limit);
   </div>
 
   <section class="mt-3">
+    <?php
+    $sys_adm_query = "SELECT COUNT(category) as sys_adm FROM vacancies WHERE category = 'Системное администрирование'";
+    $sites_query = "SELECT COUNT(category) as sites FROM vacancies WHERE category = 'Разработка сайтов'";
+    $networks_query = "SELECT COUNT(category) as networks FROM vacancies WHERE category = 'Сетевое администрирование'";
+    $ios_query = "SELECT COUNT(category) as ios FROM vacancies WHERE category = 'Разработка iOS приложений'";
+    $androids_query = "SELECT COUNT(category) as androids FROM vacancies WHERE category = 'Разработка Android приложений'";
+    $others_query = "SELECT COUNT(category) as others FROM vacancies WHERE category = 'Другое'";
+
+    $sys_adm_result = mysqli_query($conn, $sys_adm_query);
+    $sites_result = mysqli_query($conn, $sites_query);
+    $networks_result = mysqli_query($conn, $networks_query);
+    $ios_result = mysqli_query($conn, $ios_query);
+    $androids_result = mysqli_query($conn, $androids_query);
+    $others_result = mysqli_query($conn, $others_query);
+
+    $sys_adm_row = mysqli_fetch_array($sys_adm_result);
+    $sites_row = mysqli_fetch_array($sites_result);
+    $networks_row = mysqli_fetch_array($networks_result);
+    $ios_row = mysqli_fetch_array($ios_result);
+    $androids_row = mysqli_fetch_array($androids_result);
+    $others_row = mysqli_fetch_array($others_result);
+
+    $sys_adm = $sys_adm_row['sys_adm'];
+    $sites = $sites_row['sites'];
+    $networks = $networks_row['networks'];
+    $ios = $ios_row['ios'];
+    $androids = $androids_row['androids'];
+    $others = $others_row['others'];
+
+    $sphere_array = array($sys_adm, $sites, $networks, $ios, $androids, $others);
+
+    foreach ($sphere_array as $key => $value) {
+      if (empty($value)) {
+        $value = 0;
+      }
+    }
+    ?>
     <div class="container">
       <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 g-4">
         <div class="col">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Системное администрирование</h5>
-              <p class="card-text">0 стажировок</p>
+              <p class="card-text">
+                <?php
+                echo $sphere_array[0];
+                if (
+                  $sphere_array[0] % 10 == 0 ||
+                  $sphere_array[0] % 10 == 5 ||
+                  $sphere_array[0] % 10 == 6 ||
+                  $sphere_array[0] % 10 == 7 ||
+                  $sphere_array[0] % 10 == 8 ||
+                  $sphere_array[0] % 10 == 9 ||
+                  $sphere_array[0] % 100 == 11 ||
+                  $sphere_array[0] % 100 == 12 ||
+                  $sphere_array[0] % 100 == 13 ||
+                  $sphere_array[0] % 100 == 14 ||
+                  $sphere_array[0] % 100 == 15 ||
+                  $sphere_array[0] % 100 == 16 ||
+                  $sphere_array[0] % 100 == 17 ||
+                  $sphere_array[0] % 100 == 18 ||
+                  $sphere_array[0] % 100 == 19
+                ) {
+                  echo " стажировок";
+                } elseif ($sphere_array[0] % 10 == 1) {
+                  echo " стажировка";
+                } elseif ($sphere_array[0] % 10 == 2 || $sphere_array[0] % 10 == 3 || $sphere_array[0] % 10 == 4) {
+                  echo " стажировки";
+                } ?>
+              </p>
             </div>
           </div>
         </div>
@@ -102,7 +165,33 @@ $total_pages = ceil($total_rows / $limit);
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Разработка сайтов</h5>
-              <p class="card-text">0 стажировок</p>
+              <p class="card-text">
+                <?php
+                echo $sphere_array[1];
+                if (
+                  $sphere_array[1] % 10 == 0 ||
+                  $sphere_array[1] % 10 == 5 ||
+                  $sphere_array[1] % 10 == 6 ||
+                  $sphere_array[1] % 10 == 7 ||
+                  $sphere_array[1] % 10 == 8 ||
+                  $sphere_array[1] % 10 == 9 ||
+                  $sphere_array[1] % 100 == 11 ||
+                  $sphere_array[1] % 100 == 12 ||
+                  $sphere_array[1] % 100 == 13 ||
+                  $sphere_array[1] % 100 == 14 ||
+                  $sphere_array[1] % 100 == 15 ||
+                  $sphere_array[1] % 100 == 16 ||
+                  $sphere_array[1] % 100 == 17 ||
+                  $sphere_array[1] % 100 == 18 ||
+                  $sphere_array[1] % 100 == 19
+                ) {
+                  echo " стажировок";
+                } elseif ($sphere_array[1] % 10 == 1) {
+                  echo " стажировка";
+                } elseif ($sphere_array[1] % 10 == 2 || $sphere_array[1] % 10 == 3 || $sphere_array[1] % 10 == 4) {
+                  echo " стажировки";
+                } ?>
+              </p>
             </div>
           </div>
         </div>
@@ -110,7 +199,33 @@ $total_pages = ceil($total_rows / $limit);
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Сетевое администрирование</h5>
-              <p class="card-text">0 стажировок</p>
+              <p class="card-text">
+                <?php
+                echo $sphere_array[2];
+                if (
+                  $sphere_array[2] % 10 == 0 ||
+                  $sphere_array[2] % 10 == 5 ||
+                  $sphere_array[2] % 10 == 6 ||
+                  $sphere_array[2] % 10 == 7 ||
+                  $sphere_array[2] % 10 == 8 ||
+                  $sphere_array[2] % 10 == 9 ||
+                  $sphere_array[2] % 100 == 11 ||
+                  $sphere_array[2] % 100 == 12 ||
+                  $sphere_array[2] % 100 == 13 ||
+                  $sphere_array[2] % 100 == 14 ||
+                  $sphere_array[2] % 100 == 15 ||
+                  $sphere_array[2] % 100 == 16 ||
+                  $sphere_array[2] % 100 == 17 ||
+                  $sphere_array[2] % 100 == 18 ||
+                  $sphere_array[2] % 100 == 19
+                ) {
+                  echo " стажировок";
+                } elseif ($sphere_array[2] % 10 == 1) {
+                  echo " стажировка";
+                } elseif ($sphere_array[2] % 10 == 2 || $sphere_array[2] % 10 == 3 || $sphere_array[2] % 10 == 4) {
+                  echo " стажировки";
+                } ?>
+              </p>
             </div>
           </div>
         </div>
@@ -119,15 +234,33 @@ $total_pages = ceil($total_rows / $limit);
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Разработка iOS приложений</h5>
-              <p class="card-text">0 стажировок</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Разработка Desktop приложений</h5>
-              <p class="card-text">0 стажировок</p>
+              <p class="card-text">
+                <?php
+                echo $sphere_array[3];
+                if (
+                  $sphere_array[3] % 10 == 0 ||
+                  $sphere_array[3] % 10 == 5 ||
+                  $sphere_array[3] % 10 == 6 ||
+                  $sphere_array[3] % 10 == 7 ||
+                  $sphere_array[3] % 10 == 8 ||
+                  $sphere_array[3] % 10 == 9 ||
+                  $sphere_array[3] % 100 == 11 ||
+                  $sphere_array[3] % 100 == 12 ||
+                  $sphere_array[3] % 100 == 13 ||
+                  $sphere_array[3] % 100 == 14 ||
+                  $sphere_array[3] % 100 == 15 ||
+                  $sphere_array[3] % 100 == 16 ||
+                  $sphere_array[3] % 100 == 17 ||
+                  $sphere_array[3] % 100 == 18 ||
+                  $sphere_array[3] % 100 == 19
+                ) {
+                  echo " стажировок";
+                } elseif ($sphere_array[3] % 10 == 1) {
+                  echo " стажировка";
+                } elseif ($sphere_array[3] % 10 == 2 || $sphere_array[3] % 10 == 3 || $sphere_array[3] % 10 == 4) {
+                  echo " стажировки";
+                } ?>
+              </p>
             </div>
           </div>
         </div>
@@ -135,7 +268,67 @@ $total_pages = ceil($total_rows / $limit);
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Разработка Android приложений</h5>
-              <p class="card-text">0 стажировок</p>
+              <p class="card-text">
+                <?php
+                echo $sphere_array[4];
+                if (
+                  $sphere_array[4] % 10 == 0 ||
+                  $sphere_array[4] % 10 == 5 ||
+                  $sphere_array[4] % 10 == 6 ||
+                  $sphere_array[4] % 10 == 7 ||
+                  $sphere_array[4] % 10 == 8 ||
+                  $sphere_array[4] % 10 == 9 ||
+                  $sphere_array[4] % 100 == 11 ||
+                  $sphere_array[4] % 100 == 12 ||
+                  $sphere_array[4] % 100 == 13 ||
+                  $sphere_array[4] % 100 == 14 ||
+                  $sphere_array[4] % 100 == 15 ||
+                  $sphere_array[4] % 100 == 16 ||
+                  $sphere_array[4] % 100 == 17 ||
+                  $sphere_array[4] % 100 == 18 ||
+                  $sphere_array[4] % 100 == 19
+                ) {
+                  echo " стажировок";
+                } elseif ($sphere_array[4] % 10 == 1) {
+                  echo " стажировка";
+                } elseif ($sphere_array[4] % 10 == 2 || $sphere_array[4] % 10 == 3 || $sphere_array[4] % 10 == 4) {
+                  echo " стажировки";
+                } ?>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Другое</h5>
+              <p class="card-text">
+                <?php
+                echo $sphere_array[5];
+                if (
+                  $sphere_array[5] % 10 == 0 ||
+                  $sphere_array[5] % 10 == 5 ||
+                  $sphere_array[5] % 10 == 6 ||
+                  $sphere_array[5] % 10 == 7 ||
+                  $sphere_array[5] % 10 == 8 ||
+                  $sphere_array[5] % 10 == 9 ||
+                  $sphere_array[5] % 100 == 11 ||
+                  $sphere_array[5] % 100 == 12 ||
+                  $sphere_array[5] % 100 == 13 ||
+                  $sphere_array[5] % 100 == 14 ||
+                  $sphere_array[5] % 100 == 15 ||
+                  $sphere_array[5] % 100 == 16 ||
+                  $sphere_array[5] % 100 == 17 ||
+                  $sphere_array[5] % 100 == 18 ||
+                  $sphere_array[5] % 100 == 19
+                ) {
+                  echo " стажировок";
+                } elseif ($sphere_array[5] % 10 == 1) {
+                  echo " стажировка";
+                } elseif ($sphere_array[5] % 10 == 2 || $sphere_array[5] % 10 == 3 || $sphere_array[5] % 10 == 4) {
+                  echo " стажировки";
+                } ?>
+              </p>
             </div>
           </div>
         </div>
@@ -202,9 +395,12 @@ $total_pages = ceil($total_rows / $limit);
               <label for="exampleInputPassword1" class="form-label">Ваш пароль</label>
               <input type="password" name="password" class="form-control password" id="loginPassword">
             </div>
-            <div class="mb-3 form-check">
+            <div class="mb-1 form-check">
               <input type="checkbox" class="form-check-input password-checkbox" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Показать пароль</label>
+            </div>
+            <div class="mb-2">
+              <a href="employer_login.php">Вход для работодателей</a>
             </div>
             <button type="submit" id="loginBtn" class="btn btn-primary">Войти</button>
             <div class="login_success">
