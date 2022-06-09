@@ -31,7 +31,7 @@ while ($row = mysqli_fetch_array($result)) {
             <p class="card-text"><?php echo $row["description"]; ?></p>
             <p class="card-text"><?php echo $row["city"]; ?></p>
             <p class="card-text text-muted"><?php echo $row["emloyer_name"]; ?></p>
-            <button class="btn btn-primary feedback-btn" data-req="<?php echo $row["vac_id"]; ?>" <?php if (in_array($row["vac_id"],$existing_vacancies)){ echo "disabled";} ?>>Откликнуться</button>
+            <button class="btn btn-primary feedback-btn" data-req="<?php echo $row["vac_id"]; ?>" data-emp="<?php echo $row["emp_id"]; ?>" <?php if (in_array($row["vac_id"],$existing_vacancies)){ echo "disabled";} ?>>Откликнуться</button>
             <?php if (in_array($row["vac_id"],$existing_vacancies)){ echo '<p class="card-text text-muted mt-2">Вы откликнулись</p>';} ?>
         </div>
     </div>

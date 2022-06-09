@@ -100,3 +100,15 @@ body{
 .vacancy_link{
     text-decoration: none;
 }
+.link{
+    text-decoration: none;
+}
+.content_scroll {
+    height: calc(calc(100vh - 173.59px));
+    overflow-y: scroll;
+}
+@media (max-width:992px) {
+    .content_scroll {
+        height: calc(calc(100vh - 269.59px));
+    }
+}

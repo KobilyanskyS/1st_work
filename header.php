@@ -14,9 +14,6 @@
             <a class="nav-link" aria-current="page" href="index.php">Главная</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Вакансии</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="employer.php">Для работодателей</a>
           </li>
           <?php if (isset($_SESSION['user']) && $_SESSION['user_group'] == "student") {
@@ -36,7 +33,10 @@
                 <a class="nav-link session_name session_name" href="employer_profile.php">'.$_SESSION['user'].'</a>
               </li>
               <li class="nav-item d-block d-md-block d-lg-none">
-                <a class="nav-link" href="#">Настройки</a>
+                <a class="nav-link" href="employer_notifications.php">Уведомления</a>
+              </li>
+              <li class="nav-item d-block d-md-block d-lg-none">
+                <a class="nav-link text-primary" href="create_vacancy.php">Создать вакансию</a>
               </li>
               <li class="nav-item d-block d-md-block d-lg-none">
                 <a class="text-danger nav-link" href="logout.php">Выйти</a>
@@ -62,7 +62,8 @@
             <a class="nav-link dropdown-toggle session_name" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">'.$_SESSION['user'].'</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="employer_profile.php">Профиль компании</a></li>
-                  <li><a class="dropdown-item" href="#">Настройки</a></li>
+                  <li><a class="dropdown-item" href="employer_notifications.php">Уведомления</a></li>
+                  <li><a class="nav-link text-primary" href="create_vacancy.php">Создать вакансию</a></li>
                   <li><a class="text-danger dropdown-item" href="logout.php">Выйти</a></li>
               </ul>
             </li>

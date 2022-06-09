@@ -4,11 +4,13 @@ box.addEventListener("click", function (e) {
     if (targetItem.closest(".feedback-btn")) {
         targetItem.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>  Отклик...'
         let req = targetItem.dataset.req
+        let emp = targetItem.dataset.emp
         $.ajax({
             url: 'feedback-handler.php',
             type: 'POST',
             data: {
-                feedback: req
+                vacancy_id: req,
+                employer_id: emp
             },
             success: function (dataResult) {
                 if (dataResult == 1) {
