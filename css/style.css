@@ -97,3 +97,6 @@ body{
 .vacancy_unknown_warning{
     display: none;
 }
+.vacancy_link{
+    text-decoration: none;
+}

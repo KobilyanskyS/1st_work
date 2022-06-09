@@ -26,7 +26,7 @@ while ($row = mysqli_fetch_array($result)) {
 ?>
     <div class="card w-100 mb-2">
         <div class="card-body">
-            <h5 class="card-title"><?php echo $row["vacancy_name"]; ?></h5>
+            <a class="vacancy_link" href="vacancy.php?vacancy=<?php echo $row["vac_id"]; ?>"><h5 class="card-title"><?php echo $row["vacancy_name"]; ?></h5></a>
             <p class="card-text text-primary"><?php echo $row["salary"]; ?></p>
             <p class="card-text"><?php echo $row["description"]; ?></p>
             <p class="card-text"><?php echo $row["city"]; ?></p>

@@ -381,7 +381,7 @@ $total_pages = ceil($total_rows / $limit);
             </svg>
           </a>
           <h5 class="modal-title ml-2 d-none d-sm-block" id="exampleModalLabel">Войти</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <h5 class="modal-title ml-2 d-block d-sm-none" id="exampleModalLabel">Войти</h5>
@@ -428,6 +428,7 @@ $total_pages = ceil($total_rows / $limit);
     </div>
   </div>
   <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/modal_by_hash.js"></script>
   <script>
     let showPassword = document.querySelectorAll('.password-checkbox');
     showPassword.forEach(item =>
@@ -443,39 +444,7 @@ $total_pages = ceil($total_rows / $limit);
       }
     }
   </script>
-  <script>
-    const box = document.querySelector("#target-content");
-    let logInModal = new bootstrap.Modal(document.getElementById('loginmodal'), {
-      keyboard: false
-    });
-    box.addEventListener("click", function(e) {
-      let targetItem = e.target;
-      if (targetItem.closest(".feedback-btn")) {
-        targetItem.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>  Отклик...'
-        let req = targetItem.dataset.req
-        $.ajax({
-          url: 'feedback-handler.php',
-          type: 'POST',
-          data: {
-            feedback: req
-          },
-          success: function(dataResult) {
-            if (dataResult == 1) {
-              targetItem.innerHTML = "Вы откликнулись"
-              targetItem.disabled = true;
-            } else if (dataResult == 2) {
-              targetItem.innerHTML = "Откликнуться"
-              logInModal.show();
-            } else if (dataResult == 0) {
-              targetItem.innerHTML = "Откликнуться"
-              alert("Вы работодатель")
-            }
-          }
-        })
-      }
-    })
-  </script>
-  <script src="js/modal_by_hash.js"></script>
+  <script src="js/sendFeedBackAjax.js"></script>
   <script src="js/auth.js"></script>
   <script src="js/vacanciesAjax.js"></script>
   <script src="js/authAjax.js"></script>
