@@ -335,12 +335,17 @@ $total_pages = ceil($total_rows / $limit);
       </div>
     </div>
   </section>
-
+  <div class="container">
+  <a class="btn btn-primary feedback-btn">Статическая</a>
+  <a class="btn btn-primary feedback-btn">Статическая</a>
+  <a class="btn btn-primary feedback-btn">Статическая</a>
+  <a class="btn btn-primary feedback-btn">Статическая</a>
+  </div>
   <section class="mt-3 content">
     <div class="container">
       <h2>Стажировки</h2>
     </div>
-    <div class="container" id="target-content">
+    <div class="container box" id="target-content">
       <div class="d-flex justify-content-center">
         <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
           <span class="visually-hidden">Загрузка...</span>
@@ -443,6 +448,28 @@ $total_pages = ceil($total_rows / $limit);
         input_login.type = 'password';
       }
     }
+  </script>
+  <script>
+    const box = document.querySelector("#target-content");
+    box.addEventListener("click", function(e){
+      let targetItem = e.target;
+      if (targetItem.closest(".feedback-btn")){
+        targetItem.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>  Отклик...'
+        let req = targetItem.dataset.req
+        $.ajax({
+          url: 'feedback-handler.php',
+          type: 'POST',
+          data: {
+            feedback: req
+          },
+          success: function (dataResult) {
+            console.log(dataResult);
+            targetItem.innerHTML = "Вы откликнулись"
+            targetItem.disabled = true;
+          }
+        })
+      }
+    })
   </script>
   <script src="js/modal_by_hash.js"></script>
   <script src="js/auth.js"></script>

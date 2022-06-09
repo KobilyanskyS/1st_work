@@ -102,20 +102,19 @@ if (isset($_SESSION['email'])) {
                     12 => "декабря"
                   );
                 $employer = $_SESSION['user'];
-                $select_vacancies = "SELECT name, category, salary, description, employer, MONTH(create_time) as month, DAYOFMONTH(create_time) as day, TIME_FORMAT(create_time, '%k:%i') as time FROM vacancies WHERE employer = '$employer' ORDER BY create_time DESC";
+                $select_vacancies = "SELECT v.name as vacancy_name, v.category, v.salary, v.description, emp.name, MONTH(v.create_time) as month, DAYOFMONTH(v.create_time) as day, TIME_FORMAT(v.create_time, '%k:%i') as time FROM vacancies v LEFT JOIN employers emp ON v.employer_id = emp.id WHERE emp.name = '$employer' ORDER BY v.create_time DESC";
                 $vacancies_query = mysqli_query($conn, $select_vacancies);
                 while ($vacancies_array = mysqli_fetch_array($vacancies_query)) {
                 ?>
                     <div class="card w-100 mb-2">
                         <div class="card-body">
-                            <h5 class="card-title"><?php echo $vacancies_array["name"]; ?></h5>
+                            <h5 class="card-title"><?php echo $vacancies_array["vacancy_name"]; ?></h5>
                             <p class="card-text text-primary"><?php echo $vacancies_array["salary"]; ?></p>
                             <p class="card-text"><?php echo $vacancies_array["description"]; ?></p>
-                            <p class="card-text text-muted"><?php echo $vacancies_array["employer"]; ?></p>
+                            <p class="card-text text-muted"><?php echo $vacancies_array["name"]; ?></p>
                             <p class="card-text">Размещено <span class="text-muted"><?php echo $vacancies_array["day"].' '.$_monthsList[$vacancies_array["month"]]." в ".$vacancies_array["time"]; ?></span></p>
                             <p class="card-text">Сфера деятельности: <span class="text-muted"><?php echo $vacancies_array["category"]; ?></span></p>
-                            <a href="#" class="btn btn-success">Изменить вакансию</a>
-                            <a href="#" class="btn btn-danger">Удалить вакансию</a>
+                            <a href="#" class="btn btn-outline-success">Изменить вакансию</a>
                         </div>
                     </div>
                 <?php
