@@ -335,12 +335,6 @@ $total_pages = ceil($total_rows / $limit);
       </div>
     </div>
   </section>
-  <div class="container">
-  <a class="btn btn-primary feedback-btn">Статическая</a>
-  <a class="btn btn-primary feedback-btn">Статическая</a>
-  <a class="btn btn-primary feedback-btn">Статическая</a>
-  <a class="btn btn-primary feedback-btn">Статическая</a>
-  </div>
   <section class="mt-3 content">
     <div class="container">
       <h2>Стажировки</h2>
@@ -451,9 +445,12 @@ $total_pages = ceil($total_rows / $limit);
   </script>
   <script>
     const box = document.querySelector("#target-content");
-    box.addEventListener("click", function(e){
+    let logInModal = new bootstrap.Modal(document.getElementById('loginmodal'), {
+      keyboard: false
+    });
+    box.addEventListener("click", function(e) {
       let targetItem = e.target;
-      if (targetItem.closest(".feedback-btn")){
+      if (targetItem.closest(".feedback-btn")) {
         targetItem.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>  Отклик...'
         let req = targetItem.dataset.req
         $.ajax({
@@ -462,10 +459,17 @@ $total_pages = ceil($total_rows / $limit);
           data: {
             feedback: req
           },
-          success: function (dataResult) {
-            console.log(dataResult);
-            targetItem.innerHTML = "Вы откликнулись"
-            targetItem.disabled = true;
+          success: function(dataResult) {
+            if (dataResult == 1) {
+              targetItem.innerHTML = "Вы откликнулись"
+              targetItem.disabled = true;
+            } else if (dataResult == 2) {
+              targetItem.innerHTML = "Откликнуться"
+              logInModal.show();
+            } else if (dataResult == 0) {
+              targetItem.innerHTML = "Откликнуться"
+              alert("Вы работодатель")
+            }
           }
         })
       }
