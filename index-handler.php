@@ -19,7 +19,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_group'] == 'student') {
 }
 
 $initial_page = ($page_number - 1) * $limit;
-$sql = "SELECT v.id as vac_id, v.name as vacancy_name, v.salary, v.description, v.employer_id as emp_id, emp.city, emp.name as emloyer_name FROM vacancies v LEFT JOIN employers emp ON v.employer_id = emp.id ORDER BY v.id";
+$sql = "SELECT v.id as vac_id, v.name as vacancy_name, v.salary, v.currency, v.description, v.employer_id as emp_id, emp.city, emp.name as emloyer_name FROM vacancies v LEFT JOIN employers emp ON v.employer_id = emp.id ORDER BY v.create_time DESC";
 $result = mysqli_query($conn, $sql);
 
 while ($row = mysqli_fetch_array($result)) {
@@ -27,7 +27,7 @@ while ($row = mysqli_fetch_array($result)) {
     <div class="card w-100 mb-2">
         <div class="card-body">
             <a class="vacancy_link" href="vacancy.php?vacancy=<?php echo $row["vac_id"]; ?>"><h5 class="card-title"><?php echo $row["vacancy_name"]; ?></h5></a>
-            <p class="card-text text-primary"><?php echo $row["salary"]; ?></p>
+            <p class="card-text text-primary"><?php echo $row["salary"].' '.$row["currency"]; ?></p>
             <p class="card-text"><?php echo $row["description"]; ?></p>
             <p class="card-text"><?php echo $row["city"]; ?></p>
             <p class="card-text text-muted"><?php echo $row["emloyer_name"]; ?></p>

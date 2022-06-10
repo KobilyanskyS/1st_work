@@ -39,7 +39,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="category" class="form-label">Сфера</label>
-                                <select class="form-select form-select-sm" id = "sphere" name="sphere">
+                                <select class="form-select form-select-sm" id="sphere" name="sphere">
                                     <option value="Системное администрирование">Системное администрирование</option>
                                     <option value="Разработка сайтов">Разработка сайтов</option>
                                     <option value="Сетевое администрирование">Сетевое администрирование</option>
@@ -51,6 +51,13 @@
                             <div class="mb-3">
                                 <label for="salary" class="form-label">Зарплата</label>
                                 <input type="text" class="form-control" id="salary" onchange="classList.remove('is-invalid')" name="salary">
+                                <label for="salary" class="form-label">Валюта</label>
+                                <select type="text" class="form-select form-select-sm" id="currency" onchange="classList.remove('is-invalid')" name="currency">
+                                    <option value="₽">Рубль</option>
+                                    <option value="$">Доллар</option>
+                                    <option value="€">Евро</option>
+                                    <option value="" selected>Не определено</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="description" class="form-label">Краткое описание</label>
@@ -58,7 +65,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="full_description" class="form-label">Полное описание</label>
-                                <textarea class="form-control" id="full_description" onchange="classList.remove('is-invalid')" name="full_description"></textarea>
+                                <textarea class="form-control" id="full_description" onchange="classList.remove('is-invalid')" name="full_description" cols="30" rows="5"></textarea>
                             </div>
                             <button type="submit" id="submitBtn" class="btn btn-primary">Разместить вакансию</button>
                         </div>

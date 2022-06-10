@@ -1,6 +1,15 @@
 <?php
-    if (isset($_SESSION['user']) && $_SESSION['user_group'] == "employer"){
-        echo '<nav id="target" class="navbar navbar-expand-lg navbar-light mb-2">
+  session_start();
+  include('database.php');
+
+
+    $current_user = $_SESSION['id'];
+    $notifications = "SELECT COUNT(id) as notifications FROM feedback WHERE employer_id = $current_user AND check_status = 0";
+    $notifications_result = mysqli_query($conn, $notifications);
+    $notifications_row = mysqli_fetch_array($notifications_result);
+    
+    if (isset($_SESSION['user']) && $_SESSION['user_group'] == "employer"){ ?>
+        <nav id="target" class="navbar navbar-expand-lg navbar-light mb-2">
         <div class="container border-bottom pb-3">
           <a class="navbar-brand" href="index.php">
             <svg width="40" viewBox="0 0 79 59" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -13,10 +22,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item d-block d-md-block d-lg-none">
-                    <a class="nav-link session_name session_name" href="employer_profile.php">'.$_SESSION['user'].'</a>
+                    <a class="nav-link session_name session_name" href="employer_profile.php"><?php echo $_SESSION['user'] ?></a>
                   </li>
                   <li class="nav-item d-block d-md-block d-lg-none">
-                    <a class="nav-link" href="employer_notifications.php">Уведомления</a>
+                    <a class="nav-link" href="employer_notifications.php">Уведомления  <?php if($notifications_row["notifications"]>0){ echo '<span class="text-success">+ '.$notifications_row["notifications"].'</span>'; } ?></a>
                   </li>
                   <li class="nav-item d-block d-md-block d-lg-none">
                   <a class="nav-link text-primary" href="create_vacancy.php">Создать вакансию</a>
@@ -27,10 +36,10 @@
             </ul>
                 <ul class="d-none d-lg-block d-xl-block nav nav-pills">
                 <li class="nav-item nav-item dropdown">
-                <a class="nav-link dropdown-toggle session_name" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">'.$_SESSION['user'].'</a>
+                <a class="nav-link dropdown-toggle session_name" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><?php echo $_SESSION['user'] ?></a>
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href="employer_profile.php">Профиль компании</a></li>
-                      <li><a class="dropdown-item" href="employer_notifications.php">Уведомления</a></li>
+                      <li><a class="dropdown-item" href="employer_notifications.php">Уведомления <?php if($notifications_row["notifications"]>0){ echo '<span class="text-success">+ '.$notifications_row["notifications"].'</span>'; } ?></a></li>
                       <li><a class="nav-link text-primary" href="create_vacancy.php">Создать вакансию</a></li>
                       <li><a class="text-danger dropdown-item" href="logout.php">Выйти</a></li>
                   </ul>
@@ -38,9 +47,8 @@
                 </ul>
                 </div>
                 </div>
-                </nav>';
-            } else {
-              echo '
+                </nav>
+                <?php } else {?>
               <nav id="target" class="navbar navbar-expand-lg navbar-light mb-2">
               <div class="container border-bottom pb-3">
                   <a class="navbar-brand" href="index.php">
@@ -56,5 +64,5 @@
                       </div>
                   </div>
               </div>
-          </nav>';
-            } ?>
+          </nav>
+         <?php } ?>

@@ -5,7 +5,7 @@ session_start();
 include('database.php');
 if (isset($_GET['vacancy'])) {
     $vacancy_id = $_GET['vacancy'];
-    $sql = "SELECT v.id as vac_id, v.name as vacancy_name, v.salary, v.description, v.full_description, v.employer_id as emp_id, emp.city, emp.name as emloyer_name FROM vacancies v LEFT JOIN employers emp ON v.employer_id = emp.id WHERE v.id = '$vacancy_id'";
+    $sql = "SELECT v.id as vac_id, v.name as vacancy_name, v.salary, v.currency, v.description, v.full_description, v.employer_id as emp_id, emp.city, emp.name as emloyer_name FROM vacancies v LEFT JOIN employers emp ON v.employer_id = emp.id WHERE v.id = '$vacancy_id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
     if (isset($_SESSION['id']) && $_SESSION['user_group'] == 'student') {
@@ -26,7 +26,7 @@ if (isset($_GET['vacancy'])) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Главная</title>
+        <title><?php echo $row["vacancy_name"]; ?></title>
         <link type="image/x-icon" rel="shortcut icon" href="img/favicon.ico">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="js/jquery-3.6.0.min.js"></script>
@@ -40,20 +40,22 @@ if (isset($_GET['vacancy'])) {
                 <div class="row">
                     <div class="col-md-7">
                         <h5 class="card-title"><?php echo $row["vacancy_name"]; ?></h5>
-                        <p class="card-text text-primary"><?php echo $row["salary"]; ?></p>
+                        <p class="card-text text-primary"><?php echo $row["salary"]." ".$row["currency"]; ?></p>
                         <p class="card-text"><?php echo $row["city"]; ?></p>
-                        <p class="card-text"><?php echo $row["full_description"]; ?></p>
+                        <p class="card-text"><?php echo nl2br($row["full_description"]); ?></p>
                         <p class="card-text text-muted"><?php echo $row["emloyer_name"]; ?></p>
-                        <?php if (isset($_SESSION['id'])) { ?>
+                        <?php if (isset($_SESSION['id']) && $_SESSION['user_group'] == "student") { ?>
                             <button class="btn btn-primary feedback-btn" data-req="<?php echo $row["vac_id"]; ?>" <?php if (in_array($row["vac_id"], $existing_vacancies)) {
                                                                                                                         echo "disabled";
                                                                                                                     } ?>>Откликнуться</button>
                             <?php if (in_array($row["vac_id"], $existing_vacancies)) {
                                 echo '<p class="card-text text-muted mt-2">Вы откликнулись</p>';
                             } ?>
-                        <?php } else { ?>
+                        <?php } if(isset($_SESSION['id']) && $_SESSION['user_group'] == "employer") { ?>
+                            <button class="btn btn-success"  disabled>Вы работодатель</button>
+                        <?php  } else { ?>
                             <a class="btn btn-primary" href="index.php#loginmodal" data-req="<?php echo $row["vac_id"]; ?>">Откликнуться</a>
-                        <?php  } ?>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

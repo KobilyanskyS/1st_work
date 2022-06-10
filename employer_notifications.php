@@ -32,7 +32,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_group'] == "employer") {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Главная</title>
+        <title>Уведомления</title>
         <link type="image/x-icon" rel="shortcut icon" href="img/favicon.ico">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="js/jquery-3.6.0.min.js"></script>
@@ -40,7 +40,8 @@ if (isset($_SESSION['id']) && $_SESSION['user_group'] == "employer") {
     </head>
 
     <body>
-        <?php include 'header.php'; ?>
+        <?php include 'employer_header.php'?>
+        
         <section class="content content_scroll">
             <div class="container" id="target-content">
                 <div class="row">
@@ -58,7 +59,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_group'] == "employer") {
                                             <!-- star -->
                                             <td><i class="fa fa-star text-warning"></i></td>
                                             <td>
-                                                <a href="feedback.php?feedback=<?php echo $row['fb_id'] ?>" class="link">
+                                                <a href="feedback.php?feedback=<?php echo $row['fb_id'] ?>&check_status=1" class="link">
                                                     <span class="mb-0 <?php if ($row['check_status'] == 0) {
                                                                             echo "fw-bold text-dark";
                                                                         } else {

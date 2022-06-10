@@ -20,7 +20,7 @@ if (isset($_SESSION['email'])) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Регистрация</title>
+        <title><?php echo $_SESSION['user'];?></title>
         <link type="image/x-icon" rel="shortcut icon" href="img/favicon.ico">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
@@ -78,7 +78,7 @@ if (isset($_SESSION['email'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-2"><a href="change-password.php">Изменить пароль</a></div>
+                        <div class="mt-2"><a href="employer_change_password.php">Изменить пароль</a></div>
                     </div>
                 </div>
             </div>
@@ -102,19 +102,19 @@ if (isset($_SESSION['email'])) {
                     12 => "декабря"
                   );
                 $employer = $_SESSION['user'];
-                $select_vacancies = "SELECT v.name as vacancy_name, v.category, v.salary, v.description, emp.name, MONTH(v.create_time) as month, DAYOFMONTH(v.create_time) as day, TIME_FORMAT(v.create_time, '%k:%i') as time FROM vacancies v LEFT JOIN employers emp ON v.employer_id = emp.id WHERE emp.name = '$employer' ORDER BY v.create_time DESC";
+                $select_vacancies = "SELECT v.id vac_id, v.name as vacancy_name, v.category, v.salary, v.currency, v.description, emp.id as emp_id, emp.name, MONTH(v.create_time) as month, DAYOFMONTH(v.create_time) as day, TIME_FORMAT(v.create_time, '%k:%i') as time FROM vacancies v LEFT JOIN employers emp ON v.employer_id = emp.id WHERE emp.name = '$employer' ORDER BY v.create_time DESC";
                 $vacancies_query = mysqli_query($conn, $select_vacancies);
                 while ($vacancies_array = mysqli_fetch_array($vacancies_query)) {
                 ?>
                     <div class="card w-100 mb-2">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $vacancies_array["vacancy_name"]; ?></h5>
-                            <p class="card-text text-primary"><?php echo $vacancies_array["salary"]; ?></p>
+                            <p class="card-text text-primary"><?php echo $vacancies_array["salary"].' '.$vacancies_array["currency"]; ?></p>
                             <p class="card-text"><?php echo $vacancies_array["description"]; ?></p>
                             <p class="card-text text-muted"><?php echo $vacancies_array["name"]; ?></p>
                             <p class="card-text">Размещено <span class="text-muted"><?php echo $vacancies_array["day"].' '.$_monthsList[$vacancies_array["month"]]." в ".$vacancies_array["time"]; ?></span></p>
                             <p class="card-text">Сфера деятельности: <span class="text-muted"><?php echo $vacancies_array["category"]; ?></span></p>
-                            <a href="#" class="btn btn-outline-success">Изменить вакансию</a>
+                            <a href="change_vacancy.php?vac_id=<?php echo $vacancies_array["vac_id"];?>&emp_id=<?php echo $vacancies_array["emp_id"];?>" class="btn btn-outline-success">Изменить вакансию</a>
                         </div>
                     </div>
                 <?php

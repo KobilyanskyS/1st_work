@@ -12,7 +12,16 @@ if (isset($_SESSION['email'])) {
     $surname = $user_array['surname'];
     $email = $user_array['email'];
     $phone = $user_array['phone'];
-
+    $education = $user_array['education'];
+    $university = $user_array['university'];
+    $date_of_end = $user_array['date_of_end'];
+    $specialisation = $user_array['specialisation'];
+    $main_skills = $user_array['skills'];
+    $qualities = $user_array['qualities'];
+    $certificates = $user_array['certificates'];
+    $portfolio = $user_array['portfolio'];
+    $github = $user_array['github'];
+    $other_information = $user_array['other_information'];
 ?>
     <!DOCTYPE html>
     <html>
@@ -45,9 +54,14 @@ if (isset($_SESSION['email'])) {
             </svg>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-7 col-sm-12 col-lg-6">
+                    <div class="col-md-7 col-sm-12 col-lg-9">
                         <fieldset id="fieldset" disabled>
                             <table class="w-100">
+                                <tr>
+                                    <td>
+                                        <h4>Основная информация</h4>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td class="w-25"><label for="disabledTextInput" class="form-label">Имя</label></td>
                                     <td class="pt-3 pl-3 pb-3 w-50"><input type="text" id="name" class="form-control" name="name" value="<?php echo $name; ?>"></td>
@@ -64,12 +78,72 @@ if (isset($_SESSION['email'])) {
                                     <td class="w-25"><label for="disabledTextInput" class="form-label">Номер телефона</label></td>
                                     <td class="pt-3 pl-3 pb-3 w-50"><input type="text" id="phone" class="form-control" name="phone" value="<?php echo $phone; ?>"></td>
                                 </tr>
+                                <tr class="pt-3 pb-3">
+                                    <td>
+                                        <h4 class="">Образование</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w-25"><label for="disabledTextInput" class="form-label">Образование</label></td>
+                                    <td class="pt-3 pl-3 pb-3 w-50"><input type="text" id="education" class="form-control" name="education" value="<?php echo $education; ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td class="w-25"><label for="disabledTextInput" class="form-label">ВУЗ</label></td>
+                                    <td class="pt-3 pl-3 pb-3 w-50"><input type="text" id="university" class="form-control" name="university" value="<?php echo $university; ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td class="w-25"><label for="disabledTextInput" class="form-label">Дата окончания</label></td>
+                                    <td class="pt-3 pl-3 pb-3 w-50"><input type="date" id="date_of_end" class="form-control" name="date_of_end" value="<?php echo $date_of_end; ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4>Навыки и качества</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w-25"><label for="disabledTextInput" class="form-label">Специализация</label></td>
+                                    <td class="pt-3 pl-3 pb-3 w-50"><input type="text" id="specialisation" class="form-control" name="specialisation" value="<?php echo $specialisation; ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td class="w-25"><label for="disabledTextInput" class="form-label">Основные навыки</label></td>
+                                    <td class="pt-3 pl-3 pb-3 w-50">
+                                        <textarea class="form-control" name="main_skills" id="main_skills" cols="30" rows="5"><?php echo $main_skills; ?></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w-25"><label for="disabledTextInput" class="form-label">Личные качества</label></td>
+                                    <td class="pt-3 pl-3 pb-3 w-50">
+                                        <textarea class="form-control" name="qualities" id="qualities" cols="30" rows="5"><?php echo $qualities; ?></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h4>Дополнительная информация</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="w-25"><label for="disabledTextInput" class="form-label">Сертификаты (добавьте ссылку на папку с вашими сертификатами из облачного хранилища)</label></td>
+                                    <td class="pt-3 pl-3 pb-3 w-50"><input type="text" id="certificates" class="form-control" name="certificates" value="<?php echo $certificates; ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td class="w-25"><label for="disabledTextInput" class="form-label">Ваше портфолио (добавьте ссылку на ваше портфолио)</label></td>
+                                    <td class="pt-3 pl-3 pb-3 w-50"><input type="text" id="portfolio" class="form-control" name="portfolio" value="<?php echo $portfolio; ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td class="w-25"><label for="disabledTextInput" class="form-label">Ссылка на профиль GitHub (при наличии)</label></td>
+                                    <td class="pt-3 pl-3 pb-3 w-50"><input type="text" id="github" class="form-control" name="github" value="<?php echo $github; ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td class="w-25"><label for="disabledTextInput" class="form-label">Прочая информация</label></td>
+                                    <td class="pt-3 pl-3 pb-3 w-50">
+                                        <textarea class="form-control" name="other_information" id="other_information" cols="30" rows="5"><?php echo $other_information; ?></textarea>
+                                    </td>
+                                </tr>
                             </table>
                         </fieldset>
                         <button type="button" id="change-btn" class="btn btn-primary change-btn">Изменить данные</button>
                         <button type="button" id="stop-btn" class="btn btn-secondary stop-btn">Отмена</button>
                         <button type="submit" id="send-btn" class="btn btn-success send-btn">Подтвердить</button>
-                        <!-- <img src="img/Spinner-2.gif" width="35px" alt="" id="loader" class="loader"> -->
                         <div class="success">
                             <div class="mt-3 alert alert-success d-flex align-items-center" role="alert">
                                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">

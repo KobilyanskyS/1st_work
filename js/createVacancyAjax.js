@@ -2,6 +2,7 @@ $(document).ready(function () {
     $("#submitBtn").click(function () {
         var nameValue = $('#name').val();
         var salaryValue = $('#salary').val();
+        var currencyValue = $('#currency').val();
         var descriptionValue = $('#description').val();
         var fullDescriptionValue = $('#full_description').val();
         var sphereValue = $('#sphere').val();
@@ -14,6 +15,7 @@ $(document).ready(function () {
                 data: {
                     name: nameValue,
                     salary: salaryValue,
+                    currency: currencyValue,
                     description: descriptionValue,
                     full_description: fullDescriptionValue,
                     category: sphereValue

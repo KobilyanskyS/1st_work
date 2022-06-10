@@ -9,7 +9,7 @@ if (isset($_SESSION['email'])) {
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Изменить пароль</title>
+        <title>Изменить пароль (работодатель)</title>
         <link type="image/x-icon" rel="shortcut icon" href="img/favicon.ico">
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
@@ -18,7 +18,6 @@ if (isset($_SESSION['email'])) {
 
     <body>
         <?php include 'header.php'; ?>
-
         <section class="content">
             <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                 <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -129,7 +128,7 @@ if (isset($_SESSION['email'])) {
                 }
             }
         </script>
-        <script src="js/changePassAjax.js"></script>
+        <script src="js/employerChangePassAjax.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
     </body>
 
