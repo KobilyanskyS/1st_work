@@ -35,7 +35,7 @@ $currency = $vac_array['currency'];
 </head>
 
 <body>
-    <?php include 'header.php'; ?>
+    <?php include 'employer_header.php'; ?>
 
     <section class="content">
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">

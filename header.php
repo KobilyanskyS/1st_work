@@ -18,7 +18,7 @@
         </li>
         <?php if (isset($_SESSION['user']) && $_SESSION['user_group'] == "student") { ?>
           <li class="nav-item d-block d-md-block d-lg-none">
-            <a class="nav-link session_name session_name" href="profile.php">' <?php echo $_SESSION['user'] ?></a>
+            <a class="nav-link session_name session_name" href="profile.php"><?php echo $_SESSION['user'] ?></a>
           </li>
           <li class="nav-item d-block d-md-block d-lg-none">
             <a class="nav-link" href="#">Настройки</a>

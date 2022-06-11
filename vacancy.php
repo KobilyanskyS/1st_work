@@ -34,27 +34,32 @@ if (isset($_GET['vacancy'])) {
     </head>
 
     <body>
-        <?php include 'header.php'; ?>
+        <?php if (isset($_SESSION['user']) && $_SESSION['user_group'] == "employer") {
+            include 'employer_header.php';
+        } else {
+            include 'header.php';
+        } ?>
         <section class="content">
             <div class="container" id="target-content">
                 <div class="row">
                     <div class="col-md-7">
                         <h5 class="card-title"><?php echo $row["vacancy_name"]; ?></h5>
-                        <p class="card-text text-primary"><?php echo $row["salary"]." ".$row["currency"]; ?></p>
+                        <p class="card-text text-primary"><?php echo $row["salary"] . " " . $row["currency"]; ?></p>
                         <p class="card-text"><?php echo $row["city"]; ?></p>
                         <p class="card-text"><?php echo nl2br($row["full_description"]); ?></p>
                         <p class="card-text text-muted"><?php echo $row["emloyer_name"]; ?></p>
                         <?php if (isset($_SESSION['id']) && $_SESSION['user_group'] == "student") { ?>
-                            <button class="btn btn-primary feedback-btn" data-req="<?php echo $row["vac_id"]; ?>" <?php if (in_array($row["vac_id"], $existing_vacancies)) {
+                            <button class="btn btn-primary feedback-btn" data-req="<?php echo $row["vac_id"]; ?>"  data-emp="<?php echo $row["emp_id"]; ?>"  <?php if (in_array($row["vac_id"], $existing_vacancies)) {
                                                                                                                         echo "disabled";
                                                                                                                     } ?>>Откликнуться</button>
                             <?php if (in_array($row["vac_id"], $existing_vacancies)) {
                                 echo '<p class="card-text text-muted mt-2">Вы откликнулись</p>';
                             } ?>
-                        <?php } if(isset($_SESSION['id']) && $_SESSION['user_group'] == "employer") { ?>
-                            <button class="btn btn-success"  disabled>Вы работодатель</button>
+                        <?php }
+                        else if(isset($_SESSION['id']) && $_SESSION['user_group'] == "employer") { ?>
+                            <button class="btn btn-success" disabled>Вы работодатель</button>
                         <?php  } else { ?>
-                            <a class="btn btn-primary" href="index.php#loginmodal" data-req="<?php echo $row["vac_id"]; ?>">Откликнуться</a>
+                            <a class="btn btn-primary"  href="index.php#loginmodal" data-req="<?php echo $row["vac_id"]; ?>">Откликнуться</a>
                         <?php } ?>
                     </div>
                 </div>

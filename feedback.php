@@ -45,7 +45,7 @@ if (isset($_GET['feedback']) && isset($_GET['check_status']) && $_SESSION['user_
     </head>
 
     <body>
-        <?php include 'header.php'; ?>
+        <?php include 'employer_header.php'; ?>
         <section class="content">
             <div class="container" id="target-content">
                 <div class="row">
