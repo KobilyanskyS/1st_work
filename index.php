@@ -423,6 +423,9 @@ $total_pages = ceil($total_rows / $limit);
               <a href="employer_login.php">Вход для работодателей</a>
             </div>
             <button type="submit" id="loginBtn" class="btn btn-primary">Войти</button>
+            <div class="mb-2">
+              <a href="signup.php">Регистрация</a>
+            </div>
             <div class="login_success">
               <div class="mt-3 alert alert-success d-flex align-items-center" role="alert">
                 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">

@@ -28,6 +28,14 @@ if ($result->num_rows > 0) {
     $_SESSION['user_group'] = 'employer';
     $_SESSION['email'] = $contact_email;
     $_SESSION['user'] = $company_name;
+
+    $auth_query = "SELECT id FROM employers WHERE email = '$contact_email'";
+    $auth_result = mysqli_query($conn, $auth_query);
+    $auth_array = mysqli_fetch_array($auth_result);
+    $id = $auth_array['id'];
+
+    $_SESSION['id'] = $id;
+
     echo true;
 }
 ?>

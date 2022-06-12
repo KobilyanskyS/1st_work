@@ -70,7 +70,7 @@
       } else {
       ?>
         <div>
-          <a href="signup.php" class="btn btn-outline-primary me-2">Создать резюме</a>
+          <a href="signup.php" class="btn btn-outline-primary me-2">Регистрация</a>
           <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginmodal">Войти</a>
         </div>
       <?  } ?>
