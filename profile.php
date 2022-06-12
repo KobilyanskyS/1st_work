@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['email'])) {
+if (isset($_SESSION['email']) && $_SESSION['user_group'] == "student") {
     include('database.php');
 
     $current_user = $_SESSION['email'];

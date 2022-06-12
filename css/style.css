@@ -112,3 +112,16 @@ body{
         height: calc(calc(100vh - 269.59px));
     }
 }
+
+.invite_success{
+    display: none;
+}
+.invite_success.active{
+    display: block;
+}
+.waiver_success{
+    display: none;
+}
+.waiver_success.active{
+    display: block;
+}

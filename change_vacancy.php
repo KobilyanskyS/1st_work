@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// if (isset($_SESSION['id']) && $_SESSION['id'] == $_GET['vac_id']) {
+if (isset($_SESSION['email']) && $_SESSION['user_group'] == "employer") {
 include('database.php');
 
 $vac_id = $_GET['vac_id'];
@@ -121,3 +121,4 @@ $currency = $vac_array['currency'];
 </body>
 
 </html>
+<?php } else header("location: index.php"); ?>

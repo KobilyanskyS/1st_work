@@ -9,6 +9,7 @@ $result = mysqli_query($conn, $query);
 $row = mysqli_fetch_row($result);
 $total_rows = $row[0];
 $total_pages = ceil($total_rows / $limit);
+
 ?>
 
 <!DOCTYPE html>
@@ -60,33 +61,49 @@ $total_pages = ceil($total_rows / $limit);
         </div>
       </div>
       <?php if (isset($_SESSION['user']) && $_SESSION['user_group'] == "student") {
-        echo
-        '<div class="col-sm-12  col-md-5 col-lg-5 col-xl-5">
-        <div class="p-4 text-white bg-light rounded-3 border">
-          <table class="table">
-            <tbody>
-              <tr>
-                <td class="border-0">
-                  <h5>События</h5>
-                </td>
-              </tr>
-              <tr>
-                <td class="border-0">Просмотры резюме</td>
-                <td class="border-0">1</td>
-              </tr>
-              <tr>
-                <td class="border-0">Отклики и приглашения</td>
-                <td class="border-0">1</td>
-              </tr>
-              <tr>
-                <td class="border-0">Избранные стажировки</td>
-                <td class="border-0">1</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>';
-      } ?>
+        $user_id = $_SESSION['id'];
+        
+        $in_proccess_query = "SELECT COUNT(id) as in_process FROM feedback WHERE user_id = '$user_id' AND answer IS NULL";
+        $in_proccess_result = mysqli_query($conn, $in_proccess_query);
+        $in_proccess_row = mysqli_fetch_row($in_proccess_result);
+        $in_proccess = $in_proccess_row[0];
+
+        $invites_query = "SELECT COUNT(id) as in_process FROM feedback WHERE user_id = '$user_id' AND answer = 'Приглашение'";
+        $invites_result = mysqli_query($conn, $invites_query);
+        $invites_row = mysqli_fetch_row($invites_result);
+        $invites = $invites_row[0];
+
+        $waiver_query = "SELECT COUNT(id) as in_process FROM feedback WHERE user_id = '$user_id' AND answer = 'Отказ'";
+        $waiver_result = mysqli_query($conn, $waiver_query);
+        $waiver_row = mysqli_fetch_row($waiver_result);
+        $waiver = $waiver_row[0];
+        ?>
+        <div class="col-sm-12  col-md-5 col-lg-5 col-xl-5">
+          <div class="p-4 text-white bg-light rounded-3 border">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td class="border-0">
+                    <h5>Отклики</h5>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="border-0"><a class="link-secondary" href="in_progress.php">В ожидании</a></td>
+                  <td class="border-0"><?php echo $in_proccess;?></td>
+                </tr>
+                <tr>
+                  <td class="border-0"><a class="link-secondary" href="invites.php">Приглашения</a></td>
+                  <td class="border-0"><?php echo $invites;?></td>
+                </tr>
+                <tr>
+                  <td class="border-0"><a class="link-secondary" href="waivers.php">Отказы</a></td>
+                  <td class="border-0"><?php echo $waiver;?></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div> <?php
+              } ?>
 
     </div>
   </div>

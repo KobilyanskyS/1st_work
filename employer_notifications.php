@@ -56,8 +56,6 @@ if (isset($_SESSION['id']) && $_SESSION['user_group'] == "employer") {
 
                                         <tr>
                                             <!-- label -->
-                                            <!-- star -->
-                                            <td><i class="fa fa-star text-warning"></i></td>
                                             <td>
                                                 <a href="feedback.php?feedback=<?php echo $row['fb_id'] ?>&check_status=1" class="link">
                                                     <span class="mb-0 <?php if ($row['check_status'] == 0) {
@@ -81,7 +79,7 @@ if (isset($_SESSION['id']) && $_SESSION['user_group'] == "employer") {
                                                                                     } ?>"><?php echo $row['vacancy_name'] ?></span>
                                             </td>
                                             <!-- Attachment -->
-                                            <td><i class="fa fa-paperclip text-muted"></i></td>
+
                                             <!-- Time -->
                                             <td class="<?php if ($row['check_status'] == 0) {
                                                             echo "fw-bold";

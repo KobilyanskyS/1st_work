@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['email'])) {
+if ((isset($_SESSION['email']) && $_SESSION['user_group'] == "employer")) {
     include('database.php');
 
     $current_user = $_SESSION['email'];
@@ -102,7 +102,7 @@ if (isset($_SESSION['email'])) {
                     12 => "декабря"
                   );
                 $employer = $_SESSION['user'];
-                $select_vacancies = "SELECT v.id vac_id, v.name as vacancy_name, v.category, v.salary, v.currency, v.description, emp.id as emp_id, emp.name, MONTH(v.create_time) as month, DAYOFMONTH(v.create_time) as day, TIME_FORMAT(v.create_time, '%k:%i') as time FROM vacancies v LEFT JOIN employers emp ON v.employer_id = emp.id WHERE emp.name = '$employer' ORDER BY v.create_time DESC";
+                $select_vacancies = "SELECT v.id as vac_id, v.name as vacancy_name, v.category, v.salary, v.currency, v.description, emp.id as emp_id, emp.name, MONTH(v.create_time) as month, DAYOFMONTH(v.create_time) as day, TIME_FORMAT(v.create_time, '%k:%i') as time FROM vacancies v LEFT JOIN employers emp ON v.employer_id = emp.id WHERE emp.name = '$employer' ORDER BY v.create_time DESC";
                 $vacancies_query = mysqli_query($conn, $select_vacancies);
                 while ($vacancies_array = mysqli_fetch_array($vacancies_query)) {
                 ?>
