@@ -45,10 +45,12 @@ $total_pages = ceil($total_rows / $limit);
   } ?>
 
   <div class="container">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Должность, профессия" aria-label="Recipient's username" aria-describedby="button-addon2">
-      <button class="btn btn-outline-primary" type="button" id="button-addon2">Поиск</button>
-    </div>
+    <form action="search.php" name="search" method="post">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="usersearch" placeholder="Должность, профессия" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-primary" type="submit" id="button-addon2">Поиск</button>
+      </div>
+    </form>
     <div class="row">
       <div class="<?php if (isset($_SESSION['user']) && $_SESSION['user_group'] == "student") {
                     echo 'col-sm-12 col-md-7 col-lg-7 col-xl-7 mb-2';
@@ -62,7 +64,7 @@ $total_pages = ceil($total_rows / $limit);
       </div>
       <?php if (isset($_SESSION['user']) && $_SESSION['user_group'] == "student") {
         $user_id = $_SESSION['id'];
-        
+
         $in_proccess_query = "SELECT COUNT(id) as in_process FROM feedback WHERE user_id = '$user_id' AND answer IS NULL";
         $in_proccess_result = mysqli_query($conn, $in_proccess_query);
         $in_proccess_row = mysqli_fetch_row($in_proccess_result);
@@ -77,7 +79,7 @@ $total_pages = ceil($total_rows / $limit);
         $waiver_result = mysqli_query($conn, $waiver_query);
         $waiver_row = mysqli_fetch_row($waiver_result);
         $waiver = $waiver_row[0];
-        ?>
+      ?>
         <div class="col-sm-12  col-md-5 col-lg-5 col-xl-5">
           <div class="p-4 text-white bg-light rounded-3 border">
             <table class="table">
@@ -89,15 +91,15 @@ $total_pages = ceil($total_rows / $limit);
                 </tr>
                 <tr>
                   <td class="border-0"><a class="link-secondary" href="in_progress.php">В ожидании</a></td>
-                  <td class="border-0"><?php echo $in_proccess;?></td>
+                  <td class="border-0"><?php echo $in_proccess; ?></td>
                 </tr>
                 <tr>
                   <td class="border-0"><a class="link-secondary" href="invites.php">Приглашения</a></td>
-                  <td class="border-0"><?php echo $invites;?></td>
+                  <td class="border-0"><?php echo $invites; ?></td>
                 </tr>
                 <tr>
                   <td class="border-0"><a class="link-secondary" href="waivers.php">Отказы</a></td>
-                  <td class="border-0"><?php echo $waiver;?></td>
+                  <td class="border-0"><?php echo $waiver; ?></td>
                 </tr>
               </tbody>
             </table>
