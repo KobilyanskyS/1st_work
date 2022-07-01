@@ -38,8 +38,6 @@ session_start();
                         <h2>1st Work</h2>
                         <p>Ищите уже готовых к работе стажёров!</p>
                         <div class="mb-2"><a <?php if (isset($_SESSION['user']) && $_SESSION['user_group'] == "employer"){?>href="create_vacancy.php" <?php } else {?>href="employer_signup.php"<?php } ?> class="btn btn-outline-primary">Создать вакансию</a></div>
-                        <div><a href="#" class="btn btn-primary">Искать стажёров</a></div>
-
                     </div>
                 </div>
             </div>
